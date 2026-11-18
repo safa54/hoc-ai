@@ -1,0 +1,159 @@
+# Default configuration. Override with --config path/to/file.yaml (deep-merged over this).
+db_path: data/hoc.db
+prompts_dir: prompts
+
+projects_dir: data/projects
+
+llm:
+  # Providers: one entry per API endpoint. `kind` is anthropic | openai_compat | fixture.
+  # openai_compat covers OpenAI, Azure, OpenRouter, Gemini (compat endpoint), Ollama, vLLM...
+  # Keys are read from the named environment variable, never stored here.
+  providers:
+    anthropic:
+      kind: anthropic
+      api_key_env: ANTHROPIC_API_KEY
+    openai:
+      kind: openai_compat
+      api_key_env: OPENAI_API_KEY
+    openrouter:
+      kind: openai_compat
+      api_key_env: OPENROUTER_API_KEY
+      base_url: https://openrouter.ai/api/v1
+    gemini:
+      kind: openai_compat
+      api_key_env: GEMINI_API_KEY
+      base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    ollama:                      # local models, no key
+      kind: openai_compat
+      base_url: http://localhost:11434/v1
+      structured_mode: json_prompt   # works with every model; try json_schema or tool too
+      max_tokens_param: max_tokens
+    demo:                        # replays recorded outputs; no network, no cost
+      kind: fixture
+      path: data/examples/gcd_lcm_fixture.json
+  default_provider: anthropic
+  # Tiers decouple steps from concrete models. A model is "provider:model-id"
+  # (a bare id uses default_provider), e.g. openai:gpt-5.1 or ollama:qwen3:32b.
+  models:
+    fast: claude-haiku-5-5
+    standard: claude-sonnet-5-5
+    strong: claude-opus-5-5
+  # Which tier each step uses. Unlisted steps use `default_tier`.
+  default_tier: standard
+  step_tiers:
+    smoke: fast
+    agent_planner: strong
+    agent_refiner: strong
+    tutor_turn: standard         # one call per learner message; also try `fast`
+    tutor_grade: standard
+    agent_task_extract: fast
+    agent_task_match: standard
+  # Per-step output limits. Thinking tokens count, so leave headroom on newer models.
+  step_max_tokens:
+    tutor_turn: 4000
+    tutor_grade: 3000
+  # Pin a prompt version per step; unlisted steps use the highest version on disk.
+  prompt_versions: {}
+  max_tokens: 32000
+  max_attempts: 2          # 1 retry on schema-validation failure, with the error fed back
+  cache_enabled: true
+  # USD per million tokens, per model id. Left empty on purpose: fill in current prices
+  # to get cost reporting; otherwise cost is recorded as 0.
+  pricing: {}
+
+# The agent team that builds, tests and maintains a topic graph.
+agents:
+  # role -> registered implementation (hoc.construct.agents). Swap or add roles here.
+  team:
+    planner: planner
+    builder: builder
+    critic: critic
+    tester: tester
+    refiner: refiner
+    extractor: extractor         # reads uploaded exercise sheets into tasks
+    matcher: matcher             # links exercises to the concepts they need
+  coordinator: phased          # who works next (hoc.construct.coordinator)
+  triage: threshold            # which proposals need the expert (hoc.construct.triage)
+  max_rounds: 2                # review rounds (critique -> test -> refine) per run
+  max_refine_steps: 3          # refiner steps per round
+  refine_batch: 8              # feedback items per refiner step
+  max_feedback_attempts: 2     # tries before an unresolved note is set aside
+  min_tests: 5                 # tester writes questions until this many exist
+  source_budget_chars: 24000   # source text included per prompt
+  chunk_chars: 1800
+  # Prompt size. Every agent gets a one-line outline of the graph; only the critic and the
+  # refiner see full cards, and only for the concepts they have to look at.
+  outline_summary_chars: 90    # summary length per concept in the outline
+  detail_definition_chars: 400 # definition length per concept shown in full
+  review_batch: 40             # critic: cards read in full per review (the rest: next round)
+  known_feedback_limit: 30     # "already known" notes shown to the critic
+  known_feedback_chars: 160
+  retrace_covered: false       # re-trace tests that were fully covered in the last round
+  # Simplicity: the smallest graph that covers the brief is the goal.
+  max_areas: 6                 # planner: upper bound on areas
+  area_concepts: 6             # builder: upper bound on concepts per area
+  max_findings: 8              # critic: findings kept per review, most severe first
+  refine_min_severity: medium  # agent notes below this stay open but cost no refiner call
+  prune_redundant_prerequisites: true   # drop edges implied by a chain, without an LLM
+
+triage:
+  auto_confidence: 0.8         # "agents ask" mode: below this, the expert decides
+  review_structural: true      # "agents ask" mode: merges/splits/removals go to review
+
+# Graph views ("lenses", ADR 0012): connected, possibly overlapping subgraphs to look at.
+# Used by both Build and Learn. Providers live in hoc.views; add your own with
+# @register_view_provider and list it here.
+views:
+  providers: [overview, areas, questions, exercises, saved]
+  max_bridge_hops: 3           # longest path added to connect the parts of a view
+  overview_size: 14            # concepts in the topic backbone, before connecting
+  neighbourhood_depth: 1       # "around this concept" view
+  min_members: 2               # smaller computed views are not listed
+  max_exercise_views: 40
+
+# Learning side (docs/LEARNING_SIDE_PLAN.md). Every number here is meant to be tuned.
+learn:
+  student_model: beta-facet      # hoc.learner registry: beta-facet | flat-beta
+  policy: heuristic              # hoc.policy registry: heuristic | prereq-order
+  tutor: llm                     # hoc.tutor registry
+  visible_statuses: [accepted, proposed]   # proposed = draft nodes, drawn dashed
+  split_evidence_weight: 0.5     # evidence on a split concept is inherited at this weight
+  ready_threshold: 0.6           # inferred prerequisite mean that counts as "in place"
+  max_moves: 4
+  collapse_threshold: 12         # open as super-nodes above this many concepts
+  judge_reliability: {exact: 1.0, rule: 0.9, llm: 0.7, self_report: 0.2}
+  beliefs:
+    unknown_mass: 1.0
+    likely_not: 0.35
+    uncertain: 0.65
+    likely: 0.85
+    mastered_mass: 2.5
+    half_life_days: 14
+  policy_weights:
+    weakness: 1.0
+    necessity: 0.6
+    recent_failure: 0.8
+    readiness: 1.0
+    proximity: 0.4
+    depth_gap: 0.7
+    info_gain: 0.5
+    repetition: 0.5
+    path: 1.0                    # bonus for the next steps of the learner's path
+    alternative: 0.4             # each further "advance" option ranks this much lower
+  context:                       # characters per prompt section
+    turns: 6
+    focus: 1800
+    prerequisites: 900
+    leads_to: 500
+    bridges: 500
+    outline: 500
+    learner: 600
+    moves: 400
+    pending_check: 300
+    thread: 1800
+    exercises: 200
+    task: 1200
+    map: 2500
+  budget:
+    max_llm_calls_per_session: 120
+    max_llm_calls_per_day: 400

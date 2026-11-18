@@ -1,0 +1,702 @@
+{
+  "id": "cs_3c7e9e3fce33",
+  "author": {
+    "kind": "human",
+    "name": "demo",
+    "version": null
+  },
+  "origin": "expert",
+  "rationale": "Example seed: tiny intro-probability graph",
+  "ops": [
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "sample-space",
+        "name": "Sample space",
+        "aliases": [],
+        "kind": "concept",
+        "card": {
+          "one_line": "The set of all possible outcomes of a random experiment.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.424952Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "event",
+        "name": "Event",
+        "aliases": [],
+        "kind": "concept",
+        "card": {
+          "one_line": "A subset of the sample space.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [
+            {
+              "id": "KI1",
+              "text": "An event happens exactly when the outcome lies in it."
+            }
+          ],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.424991Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "probability-measure",
+        "name": "Probability measure",
+        "aliases": [],
+        "kind": "principle",
+        "card": {
+          "one_line": "An assignment of numbers in [0,1] to events obeying the axioms.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425003Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "conditional-probability",
+        "name": "Conditional probability",
+        "aliases": [],
+        "kind": "concept",
+        "card": {
+          "one_line": "The probability of A once we know B occurred.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [
+            {
+              "id": "KI1",
+              "text": "Conditioning on B restricts the sample space to B and renormalises."
+            },
+            {
+              "id": "KI2",
+              "text": "P(A|B)=P(A and B)/P(B), defined when P(B)>0."
+            }
+          ],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425018Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "independence",
+        "name": "Independence",
+        "aliases": [],
+        "kind": "concept",
+        "card": {
+          "one_line": "Events where learning one tells nothing about the other.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [
+            {
+              "id": "KI1",
+              "text": "A and B are independent iff P(A|B)=P(A)."
+            }
+          ],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425039Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "law-of-total-probability",
+        "name": "Law of total probability",
+        "aliases": [],
+        "kind": "principle",
+        "card": {
+          "one_line": "Split an event over a partition and add the weighted pieces.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425048Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "bayes-rule",
+        "name": "Bayes' rule",
+        "aliases": [],
+        "kind": "principle",
+        "card": {
+          "one_line": "Reverse a conditional probability using the prior and the likelihood.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [
+            {
+              "id": "KI1",
+              "text": "P(A|B)=P(B|A)P(A)/P(B)."
+            }
+          ],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425059Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "random-variable",
+        "name": "Random variable",
+        "aliases": [],
+        "kind": "concept",
+        "card": {
+          "one_line": "A numerical quantity determined by the outcome.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425066Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_concept",
+      "concept": {
+        "id": "expectation",
+        "name": "Expectation",
+        "aliases": [],
+        "kind": "concept",
+        "card": {
+          "one_line": "The probability-weighted average value of a random variable.",
+          "definition": "",
+          "formal": null,
+          "key_ideas": [],
+          "representations": [],
+          "examples": [],
+          "non_examples": [],
+          "scope_conditions": "",
+          "facet_indicators": {
+            "recall": "",
+            "apply": "",
+            "explain": "",
+            "transfer": ""
+          },
+          "misconception_ids": [],
+          "source_refs": []
+        },
+        "topic_ids": [],
+        "status": "proposed",
+        "locked": false,
+        "version": 1,
+        "redirect_to": null,
+        "split_into": [],
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425075Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:sample-space->event",
+        "type": "prerequisite_of",
+        "source": "sample-space",
+        "target": "event",
+        "necessity": "essential",
+        "rationale": "Events are defined as subsets of the sample space.",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425086Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:event->probability-measure",
+        "type": "prerequisite_of",
+        "source": "event",
+        "target": "probability-measure",
+        "necessity": "essential",
+        "rationale": "A probability measure assigns numbers to events.",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425120Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:probability-measure->conditional-probability",
+        "type": "prerequisite_of",
+        "source": "probability-measure",
+        "target": "conditional-probability",
+        "necessity": "essential",
+        "rationale": "",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425132Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:conditional-probability->independence",
+        "type": "prerequisite_of",
+        "source": "conditional-probability",
+        "target": "independence",
+        "necessity": "essential",
+        "rationale": "Independence is defined through conditioning (or its product form).",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425141Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:conditional-probability->bayes-rule",
+        "type": "prerequisite_of",
+        "source": "conditional-probability",
+        "target": "bayes-rule",
+        "necessity": "essential",
+        "rationale": "",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425148Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:law-of-total-probability->bayes-rule",
+        "type": "prerequisite_of",
+        "source": "law-of-total-probability",
+        "target": "bayes-rule",
+        "necessity": "essential",
+        "rationale": "The denominator is computed with total probability.",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425156Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:conditional-probability->law-of-total-probability",
+        "type": "prerequisite_of",
+        "source": "conditional-probability",
+        "target": "law-of-total-probability",
+        "necessity": "supportive",
+        "rationale": "",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425165Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:sample-space->random-variable",
+        "type": "prerequisite_of",
+        "source": "sample-space",
+        "target": "random-variable",
+        "necessity": "essential",
+        "rationale": "",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425174Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:probability-measure->expectation",
+        "type": "prerequisite_of",
+        "source": "probability-measure",
+        "target": "expectation",
+        "necessity": "essential",
+        "rationale": "",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425209Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "prerequisite_of:random-variable->expectation",
+        "type": "prerequisite_of",
+        "source": "random-variable",
+        "target": "expectation",
+        "necessity": "essential",
+        "rationale": "",
+        "confidence": 0.9,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425223Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_relation",
+      "relation": {
+        "id": "contrasts_with:conditional-probability->independence",
+        "type": "contrasts_with",
+        "source": "conditional-probability",
+        "target": "independence",
+        "necessity": null,
+        "rationale": "Often confused; independence is the special case where conditioning changes nothing.",
+        "confidence": 0.7,
+        "status": "proposed",
+        "locked": false,
+        "scope": [],
+        "evidence_summary": {
+          "from_text": 0,
+          "from_solutions": 0,
+          "from_expert": 0,
+          "from_learners": 0
+        },
+        "source_refs": [],
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425233Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_misconception",
+      "misconception": {
+        "id": "confuse-conditional-with-inverse",
+        "name": "Conditional vs. inverse conditional",
+        "statement": "P(A|B) and P(B|A) are (roughly) the same.",
+        "concept_ids": [
+          "conditional-probability",
+          "bayes-rule"
+        ],
+        "relation_ids": [],
+        "diagnostic_signs": [
+          "Reports P(test positive | sick) when asked for P(sick | test positive)."
+        ],
+        "diagnostic_task_ids": [],
+        "remediation_notes": "Natural-frequency table or tree with a rare condition.",
+        "origin": "expert",
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425253Z"
+      }
+    },
+    {
+      "note": "",
+      "op": "add_misconception",
+      "misconception": {
+        "id": "independent-means-disjoint",
+        "name": "Independent = disjoint",
+        "statement": "Mutually exclusive events are independent.",
+        "concept_ids": [
+          "independence",
+          "event"
+        ],
+        "relation_ids": [],
+        "diagnostic_signs": [
+          "Multiplies probabilities of disjoint events."
+        ],
+        "diagnostic_task_ids": [],
+        "remediation_notes": "",
+        "origin": "expert",
+        "version": 1,
+        "created_by": null,
+        "created_at": "2026-11-03T19:29:24.425263Z"
+      }
+    }
+  ],
+  "confidence": 1.0,
+  "impact": 0.5,
+  "evidence": [],
+  "run_id": null,
+  "review_item_id": null,
+  "status": "proposed",
+  "applied_seq": null,
+  "created_at": "2026-11-03T19:29:24.425390Z",
+  "applied_at": null,
+  "decided_by": null
+}
